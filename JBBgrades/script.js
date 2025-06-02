@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.dataset.name = subject.name;
                 
                 card.innerHTML = `
-                    <button class="close-expanded-btn"><i class="fas fa-times"></i></button>
+                    <button class="close-expanded-btn"><i class="fas fa-caret-up"></i></button>
                     <button class="delete-subject-btn"><i class="fas fa-trash-alt"></i></button>
                     <div class="subject-header">
                         <div class="subject-name">${subject.name}</div>
