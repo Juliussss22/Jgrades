@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jgrades - Notenrechner</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js"></script>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="app-title"><i class="fas fa-calculator"></i> Jgrades</h1>
+            <p class="app-subtitle">Notenrechner für das GG</p>
+            
+            <div class="mode-switch">
+                <button class="mode-btn active" id="school-mode">
+                    <i class="fas fa-graduation-cap"></i> Schulnoten (1-6)
+                </button>
+                <button class="mode-btn" id="abi-mode">
+                    <i class="fas fa-star"></i> Abitur-Punkte (0-15)
+                </button>
+            </div>
+        </header>
+        
+        <div class="overall-grade">
+            <h2>Gesamtschnitt</h2>
+            <div class="grade-display">1.50</div>
+            <div class="grade-status">Aktuell: Sehr gut</div>
+            <div class="grade-description">Basierend auf allen eingetragenen Fächern</div>
+        </div>
+        
+        <div class="subjects-container">
+            <!-- Fächer werden dynamisch hinzugefügt -->
+        </div>
+        
+        
+        <div class="add-subject">
+            <div class="subject-select-container">
+                <div class="subject-select-header">
+                    <i class="fas fa-book"></i>
+                    <span>Fach auswählen</span>
+                </div>
+                <select id="subject-select">
+                    <option value="" disabled selected>Fach auswählen...</option>
+                    <option value="Mathematik">Mathematik</option>
+                    <option value="Deutsch">Deutsch</option>
+                    <option value="Englisch">Englisch</option>
+                    <option value="Französisch">Französisch</option>
+                    <option value="Latein">Latein</option>
+                    <option value="Physik">Physik</option>
+                    <option value="Chemie">Chemie</option>
+                    <option value="Biologie">Biologie</option>
+                    <option value="Geschichte">Geschichte</option>
+                    <option value="Geographie">Geographie</option>
+                    <option value="Sozialkunde">Politik u. Gesellschaft</option>
+                    <option value="Wirtschaft">Wirtschaft u. Recht</option>
+                    <option value="Informatik">Informatik</option>
+                    <option value="Kunst">Kunst</option>
+                    <option value="Musik">Musik</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Religion">Religion</option>
+                    <option value="Ethik">Ethik</option>
+                    <option value="Philosophie">Philosophie</option>
+                    <option value="custom">Benutzerdefiniert...</option>
+                </select>
+                <div class="select-arrow"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <button id="add-subject-btn"><i class="fas fa-plus"></i> Fach hinzufügen</button>
+        </div>
+        
+        <div class="calculation-info">
+            <h3><i class="fas fa-info-circle"></i> Berechnungsmethode</h3>
+            <p>Die App berechnet den Durchschnitt nach folgenden Regeln:</p>
+            <ul>
+                <li>Schulaufgaben werden <strong>doppelt</strong> gewichtet</li>
+                <li>Mündliche Noten werden <strong>einfach</strong> gewichtet</li>
+                <li>Fachschnitt = (Schulaufgaben-Schnitt × 2 + Mündlicher Schnitt) ÷ 3</li>
+                <li>Gesamtschnitt = Durchschnitt aller Fachschnitte</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Jgrades &copy; 2025 | made by JBB</p>
+        </footer>
+    </div>
+
+    <!-- Custom Subject Modal -->
+    <div id="custom-subject-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Benutzerdefiniertes Fach erstellen</h2>
+            
+            <div class="input-group">
+                <label>Fachname</label>
+                <input type="text" id="custom-subject-name" placeholder="Fachname eingeben">
+            </div>
+            
+            <h3>Kategorien</h3>
+            <div id="categories-container">
+                <div class="category-item">
+                    <div class="input-group">
+                        <label>Kategoriename</label>
+                        <input type="text" class="category-name" value="Schulaufgaben">
+                    </div>
+                    <div class="input-group">
+                        <label>Gewichtung</label>
+                        <input type="number" min="1" step="1" class="category-weight" value="2">
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="input-group">
+                        <label>Kategoriename</label>
+                        <input type="text" class="category-name" value="Mündliche Noten">
+                    </div>
+                    <div class="input-group">
+                        <label>Gewichtung</label>
+                        <input type="number" min="1" step="1" class="category-weight" value="1">
+                    </div>
+                </div>
+            </div>
+            <button id="add-category-btn"><i class="fas fa-plus"></i> Kategorie hinzufügen</button>
+            
+            <h3>Berechnungsformel (optional)</h3>
+            <textarea id="calculation-formula" placeholder="Formel zur Berechnung des Fachschnitts..."></textarea>
+            <p class="formula-help">Verwende Variablen wie: kategorie1, kategorie2, ... um auf die Durchschnitte der Kategorien zuzugreifen. Beispiel: (kategorie1 * 2 + kategorie2) / 3</p>
+            
+            <button id="save-custom-subject" class="save-btn">Fach speichern</button>
+        </div>
+    </div>
+
+   
+</body>
+</html>
